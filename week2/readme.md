@@ -54,7 +54,6 @@ switched to db tvseries
 <br> years: [2011,2017]
 <br> }
 <br> );
-<br>WriteResult({ "nInserted" : 1 })
 </br>
 </b>
 
@@ -69,7 +68,6 @@ To insert another record
 <br> years: [2014,2019]
 <br> }
 <br> );
-<br>WriteResult({ "nInserted" : 1 })
 </br>
 </b>
 
@@ -87,7 +85,6 @@ db.action.find({$or:[{name:"Game of Thrones"}, {firstName:"The Flash"}]});
 
 Removing the document is same as finding them
 <b>
-db.action.remove({name:"Game of Thrones"});</br>
-WriteResult({ "nRemoved" : 2 })
-
+db.action.remove({name:"Game of Thrones"});<br>
+Output : WriteResult({ "nRemoved" : 2 })
 </b>
