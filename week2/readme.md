@@ -71,14 +71,12 @@ To insert another record
 </br>
 </b>
 
-To find a particular record for example where the first name is john:
-
+To find a particular record for example where the name is The Flash:
 <br>
 <b>db.action.find({name:"The Flash"});</b>
 </br>
 
 We could also use logical operation such as "and", "or" to find the result:
-
 <b>
 db.action.find({$or:[{name:"Game of Thrones"}, {firstName:"The Flash"}]});
 </b>
