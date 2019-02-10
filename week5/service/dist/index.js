@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 
 let connector = (() => {
   var _ref = _asyncToGenerator(function* () {
+
     try {
       // Use connect method to connect to the Server
       return yield yield _mongodb2.default.connect(url);
@@ -19,10 +20,10 @@ let connector = (() => {
   };
 })();
 
-let findActor = (() => {
+let findCartoon = (() => {
   var _ref2 = _asyncToGenerator(function* (db, query) {
     try {
-      let r = yield db.collection("actors").find(query).toArray();
+      let r = yield db.collection('Cartoons').find(query).toArray();
       console.log(r);
       return r;
     } catch (err) {
@@ -30,52 +31,53 @@ let findActor = (() => {
     }
   });
 
-  return function findActor(_x, _x2) {
+  return function findCartoon(_x, _x2) {
     return _ref2.apply(this, arguments);
   };
 })();
 
-let updateActorByName = (() => {
+let updateCartoonByName = (() => {
   var _ref3 = _asyncToGenerator(function* (db, query) {
-    const { firstName, lastName } = query;
+    const { Name } = query;
     try {
-      return yield db.collection("actors").update({ firstName: firstName, lastName: lastName }, { $set: query }).toArray();
+      return yield db.collection('Cartoons').update({ Name: Name }, { $set: query }).toArray();
     } catch (err) {
       return err;
     }
   });
 
-  return function updateActorByName(_x3, _x4) {
+  return function updateCartoonByName(_x3, _x4) {
     return _ref3.apply(this, arguments);
   };
 })();
 
-let insertActor = (() => {
+let insertCartoon = (() => {
   var _ref4 = _asyncToGenerator(function* (db, query) {
-    console.log("inserting an actor");
+    console.log("inserting a Cartoon");
     try {
-      return yield db.collection("actors").insert(query);
+      return yield db.collection('Cartoons').insert(query);
     } catch (err) {
       return err;
     }
   });
 
-  return function insertActor(_x5, _x6) {
+  return function insertCartoon(_x5, _x6) {
     return _ref4.apply(this, arguments);
   };
 })();
 
-let deleteActorByName = (() => {
+let deleteCartoonByName = (() => {
   var _ref5 = _asyncToGenerator(function* (db, query) {
-    const { firstName, lastName } = query;
+    const { Name } = query;
     try {
-      return yield db.collection("actors").remove({ firstName: firstName, lastName: lastName });
+
+      return yield db.collection('Cartoons').remove({ Name: Name });
     } catch (err) {
       return err;
     }
   });
 
-  return function deleteActorByName(_x7, _x8) {
+  return function deleteCartoonByName(_x7, _x8) {
     return _ref5.apply(this, arguments);
   };
 })();
@@ -90,7 +92,7 @@ let getHandler = (() => {
     console.log(js);
     const client = yield connector();
     const db = client.db(DBName);
-    return yield findActor(db, js);
+    return yield findCartoon(db, js);
   });
 
   return function getHandler(_x9) {
@@ -104,7 +106,7 @@ let postHandler = (() => {
     console.log(js);
     const client = yield connector();
     const db = client.db(DBName);
-    return yield insertActor(db, js);
+    return yield insertCartoon(db, js);
   });
 
   return function postHandler(_x10) {
@@ -117,7 +119,7 @@ let putHandler = (() => {
     const js = yield (0, _micro.json)(request);
     const client = yield connector();
     const db = client.db(DBName);
-    return yield updateActorByName(db, js);
+    return yield updateCartoonByName(db, js);
   });
 
   return function putHandler(_x11) {
@@ -130,7 +132,7 @@ let deleteHandler = (() => {
     const js = yield (0, _micro.json)(request);
     const client = yield connector();
     const db = client.db(DBName);
-    return yield deleteActorByName(db, js);
+    return yield deleteCartoonByName(db, js);
   });
 
   return function deleteHandler(_x12) {
@@ -138,15 +140,15 @@ let deleteHandler = (() => {
   };
 })();
 
-var _requestPromise = require("request-promise");
+var _requestPromise = require('request-promise');
 
 var _requestPromise2 = _interopRequireDefault(_requestPromise);
 
-var _mongodb = require("mongodb");
+var _mongodb = require('mongodb');
 
 var _mongodb2 = _interopRequireDefault(_mongodb);
 
-var _micro = require("micro");
+var _micro = require('micro');
 
 var _micro2 = _interopRequireDefault(_micro);
 
@@ -156,33 +158,33 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 /*
 Note:
-The URL used to connect to mongo here expects to use the docker network to resolve
-what application to connect to. The connection will not be made unless this app is
-run in a docker container, built from the included dockerfile
+This example assumes mongo running in a Docker container, from a standard docker mongo image.
+docker run --name my-mongo -it -p 27017:27017 mongo:3.4.18-jessie
 
+Use 'docker-machine env' to figure out the IP of your host network, and be sure to forward port 27017
 */
 
-const DBName = "entertainment";
+const DBName = 'The90sCartoons';
 const url = `mongodb://192.168.99.100:27017/${DBName}`;
 
 exports.default = (() => {
   var _ref10 = _asyncToGenerator(function* (request, response) {
     try {
       switch (request.method) {
-        case "GET":
+        case 'GET':
           console.log("a get call was made");
           return yield getHandler(request);
-        case "POST":
+        case 'POST':
           console.log("a post call was made");
           return yield postHandler(request);
-        case "PUT":
+        case 'PUT':
           console.log("a put call was made");
           return yield putHandler(request);
-        case "DELETE":
+        case 'DELETE':
           console.log("a delete call was made");
           return yield deleteHandler(request);
         default:
-          (0, _micro.send)(response, 405, "Invalid");
+          (0, _micro.send)(response, 405, 'Invalid');
           break;
       }
     } catch (error) {
