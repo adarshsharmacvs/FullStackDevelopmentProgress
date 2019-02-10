@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "back End service to insert sample data, depends on running docker container mongodb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://oddlylabs.com/adarshsharma.cs/ITE5430.git"
+  },
+  "keywords": [
+    "mongo",
+    "docker"
+  ],
+  "author": "Adarsh Sharma",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^3.1.13"
+  }
+}
