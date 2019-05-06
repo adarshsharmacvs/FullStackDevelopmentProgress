@@ -30,7 +30,7 @@ docker run -it --link my-mongo:mongo --rm mongo mongo --host mongo test
 </b>
 </li>
 
-this windows will work as the client version which will communicate to the server.
+this window will work as the client version which will communicate to the server.
 
 Now the client could create an object or database on the server becuase it has some basic authorities which will allow him to create the database objects.
 
