@@ -7,4 +7,4 @@ I am from India.
 * I have working knowledge and experience in C#, ASP.NET MVC, Java Script, JQUERY and other related technologies.
 * I have worked with SQL Server and other structured Query Languges in past and looking forward to learn Mongo DB which follows totally different approach.
 
-I had never used Git earlier and I am still getting used to it and looking forward to learn other facinated technologies such as React, Mongo and Node.
+I am looking forward to learn other facinated technologies such as React, Mongo and Node.
