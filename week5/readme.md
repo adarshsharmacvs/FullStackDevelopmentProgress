@@ -1,4 +1,4 @@
-### The micro service, serving up info from our MONGO DB
+### The micro services, serving up info from our MONGO DB
  <h1> The persistence Layer </h1>
  The backend folder contains the sample data in the index.js which will insert some records in the mongo db running in the docker container.
 
